@@ -18,7 +18,7 @@ interface ChildrenProps {
 const INITIAL_STATE: PlacesState = {
   isLoading: true,
   userLocation: undefined,
-  isLoadingPlaces: true,
+  isLoadingPlaces: false,
   places: [],
 };
 
@@ -34,7 +34,10 @@ export const PlacesProvider = ({ children }: ChildrenProps) => {
   const searchPlacesByTerm = async (
     query: string
   ): Promise<Feature[] | undefined> => {
-    if (query.length === 0) return []; //TODO:Limpiar state
+    if (query.length === 0) {
+      dispatch({ type: "setPlaces", payload: [] });
+      return [];
+    }
 
     if (!state.userLocation) throw new Error("No hay ubicación del usuario ");
 
