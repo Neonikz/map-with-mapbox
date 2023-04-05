@@ -1,7 +1,9 @@
+/* eslint import/no-webpack-loader-syntax: off */
 import { MapContext, PlacesContext } from "../context";
 import { useContext, useLayoutEffect, useRef } from "react";
 import { Loading } from "./Loading";
-import { Map } from "mapbox-gl";
+//@ts-ignore
+import { Map } from "!mapbox-gl";
 
 export const MapView = () => {
   const { isLoading, userLocation } = useContext(PlacesContext);
